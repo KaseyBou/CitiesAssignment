@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BlockbusterWebAppplication.Models;
+using BlockBuster;
 
 namespace BlockbusterWebAppplication.Controllers
 {
@@ -40,6 +41,12 @@ namespace BlockbusterWebAppplication.Controllers
             string[] cities = { "New York City", "Paris", "London", "Tokyo", "Cape Town" };
             ViewBag.Cities = cities;
             return View();
+        }
+
+        public IActionResult Movies()
+        {
+            var movieList = BlockBusterBasicFunctions.GetAllMoviesFull();
+            return View(movieList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
